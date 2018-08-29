@@ -1,4 +1,4 @@
-#! /usr/bin/perperl
+#! /usr/bin/perl
 
 use NetSNMP::agent (':all');
 use NetSNMP::ASN qw(ASN_COUNTER);
