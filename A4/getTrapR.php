@@ -1,23 +1,23 @@
-
 <?php
-include 'config.php';
-$check =<<<EOF
-select count(*) as RowCount from snmptrapmanager;
-EOF;
-$check2 = $db->query($check);
-$c = $check2->fetchArray(SQLITE3_ASSOC);
-if ($c["RowCount"] > 0){
-$sqlc = "select ip,port,community from snmptrapmanager";
-$ret = $db->query($sqlc);
-   while($row = $ret->fetchArray(SQLITE3_ASSOC) ) {
-		echo $row["community"]."@".$row["ip"].":".$row["port"];
-	}
-}
+include('config.php');
+
+   $query = "SELECT * FROM manager";
+   $ret = $database->query($query);
+while($row = $ret->fetchArray(SQLITE3_ASSOC) ) {
+      		$community = $row['community'];
+		      $ip = $row['ip'];
+		      $port = $row['port'];
+     }
+
+if($ret->fetchArray(SQLITE3_ASSOC)==0){
+      echo "no data of the remote host";
+   }
 
 else{
-echo "FALSE";
+   
+
+	echo   $community."@".$ip .":". $port;
 }
 
-
-
+   $database->close();
 ?>
